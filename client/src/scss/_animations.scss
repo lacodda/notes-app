@@ -1,0 +1,77 @@
+// Animations
+//------------------------------------------------------------------------------------
+
+// Fades
+//------------------------------------------------------------------------------------
+// Fade IN
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+// Fade OUT
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+// Slides
+//------------------------------------------------------------------------------------
+// Slide UP
+@keyframes slide-up-in {
+  from {
+    transform: translate(0, -100%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes slide-up-out {
+  to {
+    transform: translate(0, -100%);
+  }
+}
+// Slide DOWN
+@keyframes slide-down-in {
+  from {
+    transform: translate(0, 100%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes slide-down-out {
+  to {
+    transform: translate(0, 100%);
+  }
+}
+// Slide Right
+@keyframes fade-in-right {
+  from {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-out-right {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+}

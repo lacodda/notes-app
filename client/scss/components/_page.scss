@@ -1,0 +1,14 @@
+.page {
+  &__container {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: auto;
+    padding: 1.8rem 2rem;
+    min-height: calc(100% - 4.2rem); // $page-container-min-height;
+    font-size: $page-container-font-size;
+  }
+  &__content {
+    position: relative;
+  }
+}

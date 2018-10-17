@@ -1,0 +1,15 @@
+@mixin menu(
+  $color: $menu-color,
+  $height: $menu-height,
+  $width: $menu-width,
+  $shift-y: $menu-shift-y,
+  $border-radius: $menu-border-radius
+) {
+  display: inline-block;
+  background: $color;
+  box-shadow: 0 -#{$shift-y} $color, 0 $shift-y $color;
+  height: $height;
+  width: $width;
+  border-radius: $border-radius;
+  @content;
+}

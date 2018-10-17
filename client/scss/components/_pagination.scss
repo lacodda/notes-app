@@ -1,0 +1,44 @@
+// Pagination
+.pagination {
+  display: flex;
+  @include list-unstyled();
+  margin: $pagination-margin;
+  justify-content: center;
+}
+
+.page-link {
+  @include pagination-item();
+
+  &__first {
+    @include pagination-item($icon: $icon-clock, $simple: true);
+    &.page-link--disabled {
+      &::before {
+        color: $pagination-simple-disabled-color;
+      }
+    }
+  }
+  &__prev {
+    @include pagination-item($icon: $icon-clock, $simple: true);
+    &.page-link--disabled {
+      &::before {
+        color: $pagination-simple-disabled-color;
+      }
+    }
+  }
+  &__next {
+    @include pagination-item($icon: $icon-clock, $simple: true);
+    &.page-link--disabled {
+      &::before {
+        color: $pagination-simple-disabled-color;
+      }
+    }
+  }
+  &__last {
+    @include pagination-item($icon: $icon-clock, $simple: true);
+    &.page-link--disabled {
+      &::before {
+        color: $pagination-simple-disabled-color;
+      }
+    }
+  }
+}

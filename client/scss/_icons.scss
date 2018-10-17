@@ -1,0 +1,85 @@
+// @include font-face("icon", "icon");
+
+.icon {
+  @include icon;
+  @include icon-size;
+}
+
+$icon-clock: '\e900';
+$icon-update-arrow: '\e901';
+$icon-update-arrows: '\e902';
+$icon-bar-chart: '\e903';
+$icon-settings: '\e904';
+$icon-magnifiying-glass: '\e905';
+$icon-history: '\e906';
+$icon-full-size: '\e907';
+
+.icon-clock {
+  &:before {
+    content: $icon-clock;
+  }
+}
+
+.icon-update-arrow {
+  &:before {
+    content: $icon-update-arrow;
+  }
+}
+
+.icon-update-arrows {
+  &:before {
+    content: $icon-update-arrows;
+  }
+}
+
+.icon-bar-chart {
+  &:before {
+    content: $icon-bar-chart;
+  }
+}
+
+.icon-settings {
+  &:before {
+    content: $icon-settings;
+  }
+}
+
+.icon-magnifiying-glass {
+  &:before {
+    content: $icon-magnifiying-glass;
+  }
+}
+
+.icon-history {
+  &:before {
+    content: $icon-history;
+  }
+}
+
+.icon-full-size {
+  &:before {
+    content: $icon-full-size;
+  }
+}
+
+// Icons with shapes
+
+.icon-close {
+  @include close($size: 1rem, $color: $gray-300, $hover-color: $gray-500);
+}
+
+.icon-carret {
+  @include caret;
+}
+
+.icon-menu {
+  @include menu($color: $gray-300);
+}
+
+.icon-triangle {
+  @include triangle($color: $gray-300);
+}
+
+.icon-triangle-shaded {
+  @include triangle-shaded($color: $gray-300);
+}

@@ -1,0 +1,13 @@
+.page {
+  &__container {
+    @include center-vertically;
+  }
+  &__logo {
+    @include center-block;
+
+    width: 20rem;
+  }
+  &__header {
+    text-align: center;
+  }
+}

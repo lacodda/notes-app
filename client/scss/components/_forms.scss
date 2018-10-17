@@ -1,0 +1,36 @@
+// Inputs: text, Textarea
+@include form-input(
+  '
+  input[type=text],
+  input[type=email],
+  input[type=password],
+  input[type=date],
+  input[type=datetime],
+  input[type=number],
+  textarea
+'
+);
+
+@include form-validation-state('valid', $form-feedback-valid-color);
+@include form-validation-state('invalid', $form-feedback-invalid-color);
+
+// Form groups
+.form-group {
+  margin-bottom: $form-group-margin-bottom;
+}
+
+.form-text {
+  display: block;
+  margin-top: $form-text-margin-top;
+}
+
+// Select
+@include form-select;
+
+.radio {
+  @include checkbox-radio(radio);
+}
+
+.checkbox {
+  @include checkbox-radio(checkbox);
+}

@@ -1,0 +1,79 @@
+@mixin pagination-item($icon: false, $simple: false) {
+  position: relative;
+  display: block;
+  margin-left: $pagination-border-width;
+  line-height: $pagination-line-height;
+
+  @include border-radius($border-radius);
+
+  @include hover-focus {
+    z-index: 2;
+    text-decoration: none;
+  }
+
+  @include focus {
+    outline: 0;
+    box-shadow: $pagination-focus-box-shadow;
+  }
+  // Opinionated: add "hand" cursor to non-disabled .page__link elements
+  &:not(:disabled):not(&--disabled) {
+    cursor: pointer;
+  }
+
+  @if $simple {
+    color: $pagination-simple-color;
+    padding: $pagination-padding-y $pagination-simple-padding-x;
+    border: $pagination-border-width solid transparent;
+    &--disabled {
+      color: $pagination-disabled-color;
+      pointer-events: none;
+      cursor: auto;
+    }
+
+    @include hover {
+      color: $pagination-simple-hover-color;
+      background: none;
+    }
+
+    @if $icon {
+      @include icon(
+        $icon: $icon,
+        $size: $pagination-icon-size,
+        $color: $pagination-simple-color,
+        $margin: 0,
+        $hover-color: $pagination-simple-hover-color,
+        $disabled-color: $pagination-simple-disabled-color,
+        $transition: $pagination-icon-transition
+      );
+    }
+  } @else {
+    color: $pagination-color;
+    padding: $pagination-padding-y $pagination-padding-x;
+    border: $pagination-border-width solid $pagination-border-color;
+    @include transition($pagination-transition);
+    @include hover-focus-active('&--active') {
+      color: $pagination-hover-color;
+      background-color: $pagination-hover-bg;
+      border-color: $pagination-hover-border-color;
+      z-index: 1;
+    }
+    &--disabled {
+      color: $pagination-disabled-color;
+      pointer-events: none;
+      cursor: auto;
+      background-color: $pagination-disabled-bg;
+      border-color: $pagination-disabled-border-color;
+    }
+    @if $icon {
+      @include icon(
+        $icon: $icon,
+        $size: $pagination-icon-size,
+        $color: $pagination-color,
+        $margin: 0,
+        $hover-color: $pagination-hover-color,
+        $disabled-color: $pagination-disabled-color,
+        $transition: $pagination-icon-transition
+      );
+    }
+  }
+}

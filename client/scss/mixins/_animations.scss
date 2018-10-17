@@ -1,0 +1,38 @@
+@mixin spin($from: 0, $to: 180) {
+  @keyframes spin-#{$to} {
+    from {
+      transform: rotate(#{$from}deg);
+    }
+    to {
+      transform: rotate(#{$to}deg);
+    }
+  }
+}
+
+@mixin flipY($from: 0, $to: 180) {
+  @keyframes flipY-#{$to} {
+    from {
+      transform: rotate3d(0, 1, 0, #{$from}deg);
+      opacity: 0;
+    }
+    30% {
+      opacity: 1;
+    }
+    to {
+      transform: rotate3d(0, 1, 0, #{$to}deg);
+    }
+  }
+}
+
+@mixin fade($from: 0, $to: 1) {
+  $fromName: str-replace($from, '.', '_');
+  $toName: str-replace($to, '.', '_');
+  @keyframes fade-#{$fromName}-#{$toName} {
+    from {
+      opacity: $from;
+    }
+    to {
+      opacity: $to;
+    }
+  }
+}

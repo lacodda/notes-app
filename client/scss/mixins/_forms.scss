@@ -1,0 +1,226 @@
+@mixin checkbox-radio($type: checkbox) {
+  display: block;
+  position: relative;
+  padding-left: $checkbox-radio-padding-left;
+  margin-bottom: $checkbox-radio-margin-bottom;
+  padding-right: $checkbox-radio-padding-right;
+  cursor: pointer;
+  font-size: $checkbox-radio-font-size;
+  user-select: none;
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  &__mark {
+    position: absolute;
+    top: $checkbox-radio-top;
+    left: $checkbox-radio-left;
+    height: $checkbox-radio-height;
+    width: $checkbox-radio-width;
+    background-color: $checkbox-radio-background-color;
+    border: $checkbox-radio-border;
+    @include transition($checkbox-radio-transition);
+    @if $type == radio {
+      border-radius: 50%;
+    } @else {
+      @include border-radius($checkbox-radio-border-radius);
+    }
+    @include after {
+      position: absolute;
+      display: none;
+      @if $type == radio {
+        top: 50%;
+        left: 50%;
+        width: $radio-btn-size;
+        height: $radio-btn-size;
+        border-radius: 50%;
+        background: $blue-100;
+        transform: translate3d(-50%, -50%, 0);
+      } @else {
+        top: 0;
+        left: $checkbox-left;
+        width: $checkbox-width;
+        height: $checkbox-height;
+        border: $checkbox-border;
+        border-width: $checkbox-border-width;
+        transform: rotate(45deg);
+      }
+    }
+  }
+  input:checked ~ &__mark {
+    &::after {
+      display: block;
+    }
+  }
+  &:hover input ~ &__mark {
+    border-color: $checkbox-radio-border-color;
+  }
+}
+
+@mixin form-control-focus() {
+  @include focus {
+    color: $input-focus-color;
+    background-color: $input-focus-bg;
+    border-color: $input-focus-border-color;
+    outline: 0;
+    // Avoid using mixin so we can pass custom focus shadow properly
+    @if $enable-shadows {
+      box-shadow: $input-box-shadow, $input-focus-box-shadow;
+    } @else {
+      box-shadow: $input-focus-box-shadow;
+    }
+  }
+}
+
+@mixin form-input(
+  $selector,
+  $padding: $input-padding-y $input-padding-x,
+  $font-size: $font-size-base,
+  $line-height: $input-line-height,
+  $color: $input-color,
+  $bg: $input-bg,
+  $placeholder-color: $input-placeholder-color,
+  $disabled-bg: $input-disabled-bg,
+  $border: $input-border-width solid $input-border-color,
+  $border-radius: $input-border-radius,
+  $box-shadow: $input-box-shadow,
+  $transition: $input-transition
+) {
+  #{$selector} {
+    display: block;
+    width: 100%;
+    padding: $padding;
+    font-size: $font-size;
+    line-height: $line-height;
+    color: $color;
+    background-color: $bg; // background-clip:  padding-box;
+    border: $border;
+    @include border-radius($border-radius);
+    @include box-shadow($box-shadow);
+    @include transition($transition);
+    @content;
+    @include form-control-focus();
+    // Unstyle the caret on `<select>`s in IE10+.
+    &::-ms-expand {
+      background-color: transparent;
+      border: 0;
+    }
+    // Placeholder
+    &::placeholder {
+      color: $placeholder-color;
+      opacity: 1;
+    }
+    &:disabled,
+    &[readonly] {
+      background-color: $disabled-bg;
+      opacity: 1;
+    }
+  }
+}
+@mixin form-select() {
+  @include form-input(select) {
+    width: auto;
+    &:focus::-ms-value {
+      color: $input-color;
+      background-color: $input-bg;
+    }
+  }
+}
+@mixin form-validation-state($state, $color) {
+  .#{$state}-feedback {
+    display: none;
+    width: 100%;
+    margin-top: $form-feedback-margin-top;
+    font-size: $form-feedback-font-size;
+    color: $color;
+  }
+  .#{$state}-tooltip {
+    position: absolute;
+    top: 100%;
+    z-index: 5;
+    display: none;
+    max-width: 100%; // Contain to parent when possible
+    padding: 0.5rem;
+    margin-top: 0.1rem;
+    font-size: 0.875rem;
+    line-height: 1;
+    color: $white;
+    background-color: rgba($color, 0.8);
+    border-radius: 0.2rem;
+  }
+  .form-control,
+  .custom-select {
+    .was-validated &:#{$state},
+    &.is-#{$state} {
+      border-color: $color;
+      &:focus {
+        border-color: $color;
+        box-shadow: 0 0 0 $input-focus-width rgba($color, 0.25);
+      }
+      ~ .#{$state}-feedback,
+      ~ .#{$state}-tooltip {
+        display: block;
+      }
+    }
+  }
+  .form-check-input {
+    .was-validated &:#{$state},
+    &.is-#{$state} {
+      ~ .form-check-label {
+        color: $color;
+      }
+      ~ .#{$state}-feedback,
+      ~ .#{$state}-tooltip {
+        display: block;
+      }
+    }
+  }
+  .custom-control-input {
+    .was-validated &:#{$state},
+    &.is-#{$state} {
+      ~ .custom-control-label {
+        color: $color;
+        &::before {
+          background-color: lighten($color, 25%);
+        }
+      }
+      ~ .#{$state}-feedback,
+      ~ .#{$state}-tooltip {
+        display: block;
+      }
+      &:checked {
+        ~ .custom-control-label::before {
+          background-color: lighten($color, 10%);
+        }
+      }
+      &:focus {
+        ~ .custom-control-label::before {
+          box-shadow: 0 0 0 1px $body-bg,
+            0 0 0 $input-focus-width rgba($color, 0.25);
+        }
+      }
+    }
+  }
+  // custom file
+  .custom-file-input {
+    .was-validated &:#{$state},
+    &.is-#{$state} {
+      ~ .custom-file-label {
+        border-color: $color;
+        &::before {
+          border-color: inherit;
+        }
+      }
+      ~ .#{$state}-feedback,
+      ~ .#{$state}-tooltip {
+        display: block;
+      }
+      &:focus {
+        ~ .custom-file-label {
+          box-shadow: 0 0 0 $input-focus-width rgba($color, 0.25);
+        }
+      }
+    }
+  }
+}

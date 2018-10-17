@@ -1,0 +1,57 @@
+@mixin icon(
+  $icon: '',
+  $color: inherit,
+  $hover-color: inherit,
+  $disabled-color: inherit,
+  $size: $icon-size,
+  $margin: $icon-margin,
+  $position: before,
+  $font-family: 'icon',
+  $transition: none
+) {
+  @include pseudo-element($el: $position, $content: unicode($icon)) {
+    display: inline-block;
+    font-family: $font-family;
+    font-style: normal;
+    font-weight: normal;
+    font-size: $size;
+    font-variant: normal;
+    line-height: 1;
+    text-decoration: inherit;
+    text-rendering: optimizeLegibility;
+    text-transform: none;
+    color: $color;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    margin: $margin;
+    transition: $transition;
+    @content;
+  }
+  &--active,
+  &:hover,
+  &:active,
+  .dropdown--show > & {
+    &::#{$position} {
+      color: $hover-color;
+    }
+  }
+  &--disabled {
+    &::#{$position} {
+      color: $disabled-color;
+    }
+  }
+}
+
+@mixin icon-size($from: 0.8, $to: 4, $step: 0.1) {
+  $size: $from;
+  @while $size <= $to {
+    $sizeName: str-replace($size, '.', '-');
+    &-size-#{$sizeName} {
+      &::before {
+        font-size: #{$size}rem;
+      }
+    }
+    $size: $size + $step;
+  }
+}

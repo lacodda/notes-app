@@ -1,0 +1,30 @@
+@mixin caret($position: after, $direction: down) {
+  @if $enable-caret {
+    @if $position == before {
+      @include before {
+        @include triangle(
+          $direction: $direction,
+          $color: $caret-color,
+          $width: $caret-width,
+          $height: $caret-width
+        );
+        margin-right: 1rem;
+        vertical-align: middle;
+      }
+    } @else {
+      @include after {
+        @include triangle(
+          $direction: $direction,
+          $color: $caret-color,
+          $width: $caret-width,
+          $height: $caret-width
+        );
+        margin-left: 1rem;
+        vertical-align: middle;
+      }
+    }
+    &:empty::after {
+      margin-left: 0;
+    }
+  }
+}

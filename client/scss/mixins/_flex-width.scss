@@ -1,0 +1,4 @@
+@mixin flexWidth($val) {
+  max-width: unquote($val);
+  flex-basis: unquote($val);
+}
