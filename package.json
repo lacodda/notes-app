@@ -1,0 +1,44 @@
+{
+  "name": "notes-app",
+  "version": "0.0.1",
+  "description": "notes app",
+  "license": "MIT",
+  "homepage": "https://github.com/lacodda/notes-app",
+  "author": {
+    "name": "Kirill Lahtachev",
+    "email": "lahtachev@gmail.com",
+    "url": "http://lacodda.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:lacodda/notes-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lacodda/notes-app/issues"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "api",
+    "REST"
+  ],
+  "scripts": {
+    "start:server": "cd server && npm run dev",
+    "start:client": "cd client && npm run start",
+    "start": "concurrently --raw --kill-others \"npm run start:server\" \"npm run start:client\"",
+    "install-all": "npm i && cd server && npm i && cd ../client && npm i"
+  },
+  "devDependencies": {
+    "concurrently": "^4.0.1"
+  },
+  "engines": {
+    "node": ">= 8.0.0",
+    "npm": ">= 3.0.0",
+    "yarn": "*"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}

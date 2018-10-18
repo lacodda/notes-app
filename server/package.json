@@ -1,10 +1,10 @@
 {
-  "name": "node-rest-api",
+  "name": "notes-app-server",
   "version": "0.0.1",
-  "description": "node rest api",
+  "description": "notes app server",
   "license": "MIT",
   "main": "src/index.js",
-  "homepage": "https://github.com/lacodda/node-rest-api",
+  "homepage": "https://github.com/lacodda/notes-app",
   "author": {
     "name": "Kirill Lahtachev",
     "email": "lahtachev@gmail.com",
@@ -12,10 +12,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:lacodda/node-rest-api.git"
+    "url": "git@github.com:lacodda/notes-app.git"
   },
   "bugs": {
-    "url": "https://github.com/lacodda/node-rest-api/issues"
+    "url": "https://github.com/lacodda/notes-app/issues"
   },
   "keywords": [
     "node",
@@ -41,9 +41,7 @@
     "validate": "yarn lint && yarn test",
     "postpublish": "git push --tags",
     "deploy": "sh ./deploy.sh",
-    "docs": "apidoc -i src -o apidoc",
-    "generate-ssl": "node ./scripts/generate-ssl --hostname localhost",
-    "add-generated-ssl": "open /Applications/Utilities/Keychain\\ Access.app ssl/ssl.crt"
+    "docs": "apidoc -i src -o apidoc"
   },
   "devDependencies": {
     "apidoc": "^0.17.5",

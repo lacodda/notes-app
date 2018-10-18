@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 const parts = require('./webpack.parts');
@@ -6,17 +7,21 @@ const config = require('./config');
 
 const paths = getPaths(config);
 
-module.exports = merge(
+module.exports = env => merge(
   common,
   {
     mode: 'development',
     devtool: 'inline-source-map',
+    plugins: [
+      new webpack.DefinePlugin({
+        'process.env': { ...config.dev.env, ...env },
+      }),
+    ],
   },
   parts.devServer({
     host: process.env.HOST,
     port: process.env.PORT,
   }),
-
   parts.loadImages({ include: paths.img.src }),
   parts.loadVue({
     include: paths.src,

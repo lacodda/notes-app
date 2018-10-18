@@ -11,7 +11,7 @@ const config = require('./config');
 
 const paths = getPaths(config);
 
-module.exports = merge(
+module.exports = env => merge(
   common,
   {
     mode: 'production',
@@ -31,6 +31,9 @@ module.exports = merge(
       maxAssetSize: 450000, // in bytes
     },
     plugins: [
+      new webpack.DefinePlugin({
+        'process.env': { ...config.prod.env, ...env },
+      }),
       new StatsWriterPlugin({ fields: null, filename: '../stats.json' }),
       new webpack.HashedModuleIdsPlugin(),
       new ManifestPlugin(),
@@ -105,6 +108,7 @@ module.exports = merge(
       name: `${paths.img.dist}/[name].[hash:8].[ext]`,
     },
   }),
+
   // should go after loading images
   // FIXME: images are encoded in base64 with "optimizeImages"
   // parts.optimizeImages(),

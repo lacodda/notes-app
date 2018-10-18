@@ -11,11 +11,12 @@ module.exports = {
     api: 'src/api',
     store: 'src/store',
     components: 'src/components',
-    widgets: 'src/widgets',
+    mixins: 'src/mixins',
     i18n: 'src/i18n',
+    services: 'src/services',
     shared: 'src/shared',
-    services: 'src/shared/services',
-    util: 'src/util',
+    util: 'src/shared/util',
+    data: 'src/shared/data',
     styles: 'src/scss',
     images: 'src/assets/images',
   },
@@ -41,6 +42,18 @@ module.exports = {
     media: {
       src: 'assets/media',
       dist: 'assets/media',
+    },
+  },
+  dev: {
+    env: {
+      ROOT_API: '"http://localhost:8085"',
+      PERSISTENT_STORE_KEY: '"dashboard"',
+    },
+  },
+  prod: {
+    env: {
+      ROOT_API: '"http://localhost:8080"',
+      PERSISTENT_STORE_KEY: '"dashboard"',
     },
   },
 };
