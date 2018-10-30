@@ -1,0 +1,121 @@
+.dropdown {
+  position: relative;
+  display: inline-block;
+
+  &:not(&--up, &--left, &--right) {
+    &--active {
+      .dropdown__toggle {
+        @include border-bottom-radius(0);
+      }
+    }
+    .dropdown__toggle {
+      @include caret;
+    }
+    .dropdown__menu {
+      @include dropdown-position($position: down);
+    }
+    .dropdown__arrow {
+      @include dropdown-arrow($position: down);
+    }
+    &.dropdown--align {
+      &--left {
+        .dropdown__menu {
+          @include dropdown-align($left: 0, $right: auto, $translateX: 0);
+        }
+      }
+      &--right {
+        .dropdown__menu {
+          @include dropdown-align($left: auto, $right: 0, $translateX: 0);
+        }
+      }
+    }
+  }
+
+  &__menu {
+    @include dropdown-menu;
+    .dropdown--show & {
+      display: inline-block;
+    }
+  }
+
+  &--up {
+    .dropdown__toggle {
+      @include caret($direction: up);
+    }
+    .dropdown__menu {
+      @include dropdown-position($position: up);
+    }
+    .dropdown__arrow {
+      @include dropdown-arrow($position: up);
+    }
+    &.dropdown--align {
+      &--left {
+        .dropdown__menu {
+          @include dropdown-align(
+            $position: up,
+            $left: 0,
+            $right: auto,
+            $translateX: 0
+          );
+        }
+      }
+      &--right {
+        .dropdown__menu {
+          @include dropdown-align(
+            $position: up,
+            $left: auto,
+            $right: 0,
+            $translateX: 0
+          );
+        }
+      }
+    }
+  }
+  &--left {
+    .dropdown__toggle {
+      @include caret($position: before, $direction: left);
+    }
+    .dropdown__menu {
+      @include dropdown-position($position: left);
+    }
+    .dropdown__arrow {
+      @include dropdown-arrow($position: left);
+    }
+  }
+  &--right {
+    .dropdown__toggle {
+      @include caret($direction: right);
+    }
+    .dropdown__menu {
+      @include dropdown-position($position: right);
+    }
+    .dropdown__arrow {
+      @include dropdown-arrow($position: right);
+    }
+  }
+  &__item {
+    @include dropdown-item();
+    &--flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      align-content: center;
+    }
+  }
+  &__divider {
+    @include nav-divider($dropdown-divider-bg);
+  }
+  &__header {
+    display: block;
+    padding: $dropdown-padding-y $dropdown-item-padding-x;
+    margin-bottom: 0; // for use with heading elements
+    font-size: $font-size-base;
+    color: $dropdown-header-color;
+    white-space: nowrap; // as with > li > a
+  }
+  &__item-text {
+    display: block;
+    padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+    color: $dropdown-link-color;
+  }
+}

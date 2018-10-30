@@ -1,60 +1,99 @@
-// Animations
-//------------------------------------------------------------------------------------
+@include spin($to: 360);
+@include spin($to: 180);
+@include spin($to: 45);
+@include flipY($to: 180);
+@include fade($from: 0, $to: 1);
+@include fade($from: 1, $to: 0);
 
-// Fades
-//------------------------------------------------------------------------------------
-// Fade IN
-@keyframes fade-in {
+// Loading bar
+
+@keyframes loading-bar {
+  from {
+    left: 50%;
+    width: 0;
+    z-index: 100;
+  }
+  33.3333% {
+    left: 0;
+    width: 100%;
+    z-index: 10;
+  }
+  to {
+    left: 0;
+    width: 100%;
+  }
+}
+
+// Spinner Wave
+
+@-webkit-keyframes sk-stretchdelay {
+  0%,
+  40%,
+  100% {
+    -webkit-transform: scaleY(0.4);
+  }
+  20% {
+    -webkit-transform: scaleY(1);
+  }
+}
+
+@keyframes sk-stretchdelay {
+  0%,
+  40%,
+  100% {
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+  }
+  20% {
+    transform: scaleY(1);
+    -webkit-transform: scaleY(1);
+  }
+}
+
+// Fades & Moves
+
+@keyframes fade-in-up {
   from {
     opacity: 0;
+    transform: translate3d(0, 100%, 0);
   }
   to {
     opacity: 1;
-  }
-}
-// Fade OUT
-@keyframes fade-out {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-// Slides
-//------------------------------------------------------------------------------------
-// Slide UP
-@keyframes slide-up-in {
-  from {
-    transform: translate(0, -100%);
-  }
-  to {
     transform: none;
   }
 }
 
-@keyframes slide-up-out {
-  to {
-    transform: translate(0, -100%);
-  }
-}
-// Slide DOWN
-@keyframes slide-down-in {
+@keyframes fade-in-down {
   from {
-    transform: translate(0, 100%);
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
   }
   to {
+    opacity: 1;
     transform: none;
   }
 }
 
-@keyframes slide-down-out {
+@keyframes fade-out-up {
+  from {
+    opacity: 1;
+  }
   to {
-    transform: translate(0, 100%);
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
   }
 }
-// Slide Right
+
+@keyframes fade-out-down {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
 @keyframes fade-in-right {
   from {
     opacity: 0;
@@ -73,5 +112,60 @@
   to {
     opacity: 0;
     transform: translate3d(100%, 0, 0);
+  }
+}
+
+.animation {
+  // Fade IN
+  &__fade-in {
+    animation-name: fade-0-1;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+  }
+  &__fade-in-up {
+    animation-name: fade-in-up;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+  }
+  &__fade-in-right {
+    animation-name: fade-in-right;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+  }
+  &__fade-in-down {
+    animation-name: fade-in-down;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+  }
+
+  // Fade OUT
+  &__fade-out {
+    animation-name: fade-1-0;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+  }
+  &__fade-out-up {
+    animation-name: fade-out-up;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+  }
+  &__fade-out-right {
+    animation-name: fade-out-right;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+  }
+  &__fade-out-down {
+    animation-name: fade-out-down;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+  }
+}
+
+@keyframes fillup {
+  from {
+    stroke-dasharray: 0 100;
+  }
+  to {
+    stroke-dasharray: 100 100;
   }
 }

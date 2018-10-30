@@ -14,14 +14,16 @@ $black: #000 !default;
 $blue-100: #00a5ff !default;
 $blue-200: #0974cf !default;
 $red: #dc3545 !default;
+$salmon: salmon !default;
 $orange: #fd7e14 !default;
 $yellow: #ffc107 !default;
 $green: #28a745 !default;
 
 // Options
 //------------------------------------------------------------------------------------
-$enable-rounded: false !default;
+$enable-rounded: true !default;
 $enable-shadows: true !default;
+$enable-caret: true !default;
 
 // Grid breakpoints
 //------------------------------------------------------------------------------------
@@ -69,6 +71,8 @@ $border-radius-rounded: 100rem !default;
 // Fonts
 //------------------------------------------------------------------------------------
 
+$font-size-root: 10px !default;
+
 $font-family-sans-serif: 'Roboto', sans-serif, Arial !default;
 $font-family-base: $font-family-sans-serif !default;
 $font-weight-extra-light: 100 !default;
@@ -76,7 +80,7 @@ $font-weight-light: 300 !default;
 $font-weight-normal: 400 !default;
 $font-weight-bold: 700 !default;
 
-$font-size-base: 1rem !default;
+$font-size-base: 1.6rem !default;
 $font-weight-base: $font-weight-normal !default;
 $line-height-base: 1.5 !default;
 
@@ -96,10 +100,14 @@ $headings-color: inherit !default;
 $dt-font-weight: $font-weight-bold !default;
 
 // Tables
-//------------------------------------------------------------------------------------
-
-$table-cell-padding: 0.5rem;
-$table-caption-color: $gray-400;
+// ------------------------------------------------------------------------------------
+$table-row-height: 3rem !default;
+$table-cell-padding: 0.5rem !default;
+$table-bg: transparent !default;
+$table-border-width: $border-width !default;
+$table-border-color: $gray-200 !default;
+$table-head-color: $gray-500 !default;
+$table-caption-color: $gray-400 !default;
 
 // Forms
 //------------------------------------------------------------------------------------
@@ -109,11 +117,15 @@ $label-margin-bottom: 0.5rem;
 // Z-index
 //------------------------------------------------------------------------------------
 
+$zindex-dropdown: 1000 !default;
 $zindex-modal-backdrop: 1040 !default;
 $zindex-modal: 1050 !default;
 
 // Components
 //------------------------------------------------------------------------------------
+
+$caret-width: 0.5rem !default;
+$caret-color: $gray-500 !default;
 
 // Modal
 //------------------------------------------------------------------------------------
@@ -150,3 +162,33 @@ $modal-md: 500px !default;
 $modal-sm: 300px !default;
 
 $modal-transition: transform 0.3s ease-out !default;
+
+// Dropdowns
+//------------------------------------------------------------------------------------
+$dropdown-font-size: 1.4rem !default;
+$dropdown-min-width: calc(100% - 0.1rem) !default;
+$dropdown-padding-y: 0 !default;
+$dropdown-spacer: -0.1rem !default;
+$dropdown-bg: $white !default;
+$dropdown-border-color: $gray-300 !default;
+$dropdown-border-radius: $border-radius !default;
+$dropdown-border-width: $border-width !default;
+$dropdown-divider-bg: $gray-200 !default;
+$dropdown-box-shadow: 0 0.8rem 1.6rem rgba($black, 0.2) !default;
+
+$dropdown-link-color: $gray-500 !default;
+$dropdown-link-hover-color: darken($gray-500, 5%) !default;
+$dropdown-link-hover-bg: $gray-100 !default;
+
+$dropdown-link-active-color: $white !default;
+$dropdown-link-active-bg: $blue-200 !default;
+
+$dropdown-link-disabled-color: $gray-300 !default;
+
+$dropdown-item-padding-y: 0.7rem !default;
+$dropdown-item-padding-x: 1.2rem !default;
+
+$dropdown-header-color: $gray-300 !default;
+
+$nav-divider-color: $gray-100 !default;
+$nav-divider-margin-y: ($spacer / 2) !default;

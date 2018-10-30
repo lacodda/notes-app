@@ -1,0 +1,26 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 1.5rem;
+  background: $gray-400;
+  width: 100vw;
+  &__logo {
+    font-size: 3.4rem;
+    font-weight: 200;
+    color: $gray-100;
+    cursor: default;
+  }
+  &__menu {
+    @include list-unstyled;
+    margin: 0;
+  }
+  &__menu-item {
+    display: inline-block;
+    &:not(:last-child) {
+      margin-right: 0.7rem;
+    }
+  }
+  &__menu-link {
+  }
+}

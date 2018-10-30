@@ -1,0 +1,14 @@
+.layout-default {
+  position: relative;
+  &__header {
+    position: relative;
+  }
+  &__content {
+    position: relative;
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+  }
+  &__footer {
+  }
+}

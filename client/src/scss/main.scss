@@ -7,11 +7,20 @@
 @import 'fonts';
 @import 'animations';
 
+// Layouts
+//------------------------------------------------------------------------------------
+@import 'layout/default';
+
 // Components
 //------------------------------------------------------------------------------------
-@import 'components/modal';
+@import 'components/button';
+@import 'components/dropdown';
+@import 'components/navbar';
+@import 'components/table';
+@import 'components/widget';
 
 // Pages
 //------------------------------------------------------------------------------------
 @import 'pages/common';
-@import 'pages/index';
+@import 'pages/blockchain';
+@import 'pages/desktop';

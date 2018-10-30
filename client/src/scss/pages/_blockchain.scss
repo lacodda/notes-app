@@ -1,0 +1,41 @@
+.blockchain {
+  &__control {
+    display: flex;
+    justify-content: center;
+    > :not(:last-child) {
+      margin-right: 0.7rem;
+    }
+  }
+  &__loading {
+    margin: 3rem 0;
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 200;
+  }
+  &__sum {
+    margin: 3rem 0;
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 200;
+    text-transform: uppercase;
+  }
+  &__transactions {
+  }
+  &__transaction {
+    > * {
+      text-align: center;
+    }
+  }
+}
+
+.transaction {
+  &__from {
+    width: 40%;
+  }
+  &__to {
+    width: 40%;
+  }
+  &__sum {
+    width: auto;
+  }
+}

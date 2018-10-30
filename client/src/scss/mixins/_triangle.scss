@@ -1,0 +1,65 @@
+@mixin triangle(
+  $direction: $triangle-direction,
+  $color: $triangle-color,
+  $height: $triangle-height,
+  $width: $triangle-width,
+  $regular: false
+) {
+  @if $regular {
+    $width: ($height / 2) * 1rem;
+    $height: (sqrt(3) * $height / 2) * 1rem;
+  }
+  display: inline-block;
+  height: 0;
+  width: 0;
+  @if $direction == up {
+    border-top: 0;
+    border-right: $width solid transparent;
+    border-bottom: $height solid $color;
+    border-left: $width solid transparent;
+  }
+  @if $direction == down {
+    border-top: $height solid $color;
+    border-right: $width solid transparent;
+    border-bottom: 0;
+    border-left: $width solid transparent;
+  }
+  @if $direction == left {
+    border-top: $width solid transparent;
+    border-right: $height solid $color;
+    border-bottom: $width solid transparent;
+    border-left: 0;
+  }
+  @if $direction == right {
+    border-top: $width solid transparent;
+    border-right: 0;
+    border-bottom: $width solid transparent;
+    border-left: $height solid $color;
+  }
+  @content;
+}
+
+@mixin triangle-shaded(
+  $direction: $triangle-direction,
+  $color: $triangle-color,
+  $size: $triangle-shaded-size
+) {
+  display: inline-block;
+  height: 0;
+  width: 0;
+  border: $size solid;
+  border-color: $color $color transparent transparent;
+  @if $direction == up {
+    transform: translate3d(-50%, -50%, 0) rotate(-45deg);
+  }
+  @if $direction == down {
+    transform: translate3d(-50%, 50%, 0) rotate(135deg);
+  }
+  @if $direction == left {
+    transform: translate3d(-50%, -50%, 0) rotate(-135deg);
+  }
+  @if $direction == right {
+    transform: translate3d(50%, -50%, 0) rotate(45deg);
+  }
+  @content;
+}

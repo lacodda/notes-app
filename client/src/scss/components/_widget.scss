@@ -1,0 +1,35 @@
+.widget {
+  &__container {
+    background-color: $gray-100;
+    border: 0.1rem solid $gray-400;
+    user-select: none;
+  }
+  &__header {
+    padding: 1rem;
+    width: 100%;
+    line-height: 1;
+    background: $gray-400;
+    position: relative;
+    color: $white;
+  }
+  &__content {
+    text-align: center;
+  }
+}
+.drag {
+  cursor: move;
+}
+.close {
+  cursor: pointer;
+  font-size: 2.5rem;
+  line-height: 1;
+  position: absolute;
+  top: 50%;
+  right: 0.7rem;
+  color: $white;
+  transform: translateY(-50%);
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    color: $salmon;
+  }
+}

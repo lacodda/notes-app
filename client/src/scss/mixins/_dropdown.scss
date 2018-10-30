@@ -1,0 +1,287 @@
+@mixin dropdown-menu(
+  $background: $dropdown-bg,
+  $color: $body-color,
+  $font-size: $dropdown-font-size,
+  $border: true,
+  $border-color: $dropdown-border-color,
+  $border-width: $dropdown-border-width,
+  $border-radius: $dropdown-border-radius,
+  $box-shadow: $dropdown-box-shadow
+) {
+  position: absolute;
+  z-index: $zindex-dropdown;
+  display: none;
+  float: left;
+  min-width: $dropdown-min-width;
+  padding: $dropdown-padding-y 0;
+  font-size: $font-size; // Redeclare because nesting can cause inheritance issues
+  color: $color;
+  text-align: left; // Ensures proper alignment if parent has it changed (e.g., modal footer)
+  list-style: none;
+  background-color: $background;
+  user-select: none;
+
+  @if $border {
+    border: $border-width solid $border-color;
+  }
+  @include border-bottom-radius($border-radius);
+  @include box-shadow($box-shadow);
+
+  @content;
+}
+
+@mixin dropdown-arrow(
+  $position: down,
+  $background: $dropdown-bg,
+  $arrow-size: 0.8rem,
+  $border: true,
+  $border-color: $dropdown-border-color,
+  $border-width: $dropdown-border-width
+) {
+  @if $position == down {
+    position: absolute;
+    top: 0;
+    margin: 0;
+    left: 50%;
+
+    @include after() {
+      @include triangle-shaded(
+        $size: $arrow-size,
+        $color: $background,
+        $direction: up
+      );
+      position: absolute;
+    }
+    @if $border {
+      @include before() {
+        @include triangle-shaded(
+          $size: $arrow-size,
+          $color: $border-color,
+          $direction: up
+        );
+        position: absolute;
+        transform: translate3d(-50%, calc(-50% - #{$border-width}), 0)
+          rotate(-45deg);
+      }
+    }
+  }
+
+  @if $position == up {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: calc(#{$arrow-size} * 2);
+    left: 50%;
+
+    @include after() {
+      @include triangle-shaded(
+        $size: $arrow-size,
+        $color: $background,
+        $direction: down
+      );
+      position: absolute;
+    }
+    @if $border {
+      @include before() {
+        @include triangle-shaded(
+          $size: $arrow-size,
+          $color: $border-color,
+          $direction: down
+        );
+        position: absolute;
+        transform: translate3d(-50%, calc(50% + #{$border-width}), 0)
+          rotate(135deg);
+      }
+    }
+  }
+
+  @if $position == left {
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    margin-left: calc(#{$arrow-size} * -2);
+
+    @include after() {
+      @include triangle-shaded(
+        $size: $arrow-size,
+        $color: $background,
+        $direction: right
+      );
+      position: absolute;
+    }
+    @if $border {
+      @include before() {
+        @include triangle-shaded(
+          $size: $arrow-size,
+          $color: $border-color,
+          $direction: right
+        );
+        position: absolute;
+        transform: translate3d(calc(50% + #{$border-width}), -50%, 0)
+          rotate(45deg);
+      }
+    }
+  }
+
+  @if $position == right {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin: 0;
+
+    @include after() {
+      @include triangle-shaded(
+        $size: $arrow-size,
+        $color: $background,
+        $direction: left
+      );
+      position: absolute;
+    }
+    @if $border {
+      @include before() {
+        @include triangle-shaded(
+          $size: $arrow-size,
+          $color: $border-color,
+          $direction: left
+        );
+        position: absolute;
+        transform: translate3d(calc(-50% - #{$border-width}), -50%, 0)
+          rotate(-135deg);
+      }
+    }
+  }
+}
+
+@mixin dropdown-position($position: down, $margin: $dropdown-spacer) {
+  @if $position == down {
+    top: 100%;
+    margin-top: $margin;
+    @include dropdown-align;
+  }
+  @if $position == up {
+    bottom: 100%;
+    margin-bottom: $margin;
+    @include dropdown-align($position: $position);
+  }
+  @if $position == left {
+    top: 50%;
+    margin-right: $margin;
+    @include dropdown-align(
+      $position: $position,
+      $right: 100%,
+      $left: auto,
+      $translateX: 0,
+      $translateY: -50%
+    );
+  }
+  @if $position == right {
+    top: 50%;
+    margin-left: $margin;
+    @include dropdown-align(
+      $position: $position,
+      $right: auto,
+      $left: 100%,
+      $translateX: 0,
+      $translateY: -50%
+    );
+  }
+}
+
+@mixin dropdown-align(
+  $position: down,
+  $left: 50%,
+  $right: auto,
+  $translateX: -50%,
+  $translateY: 0,
+  $transform-important: false,
+  $arrow: true,
+  $arrow-size: 0rem
+) {
+  left: $left;
+  right: $right;
+
+  @if $arrow {
+    @if $position == down {
+      $translateY: ($translateY + $arrow-size);
+    } @else if $position == up {
+      $translateY: ($translateY - $arrow-size);
+    } @else if $position == left {
+      $translateX: ($translateX - $arrow-size);
+    } @else if $position == right {
+      $translateX: ($translateX + $arrow-size);
+    }
+  }
+
+  @if $transform-important {
+    transform: translate3d($translateX, $translateY, 0) !important;
+  } @else {
+    transform: translate3d($translateX, $translateY, 0);
+  }
+}
+
+@mixin nav-divider(
+  $color: $nav-divider-color,
+  $margin-y: $nav-divider-margin-y
+) {
+  height: 0;
+  margin: $margin-y 0;
+  overflow: hidden;
+  border-top: 0.1rem solid $color;
+}
+
+@mixin dropdown-item(
+  $color: $dropdown-link-color,
+  $hover-color: $dropdown-link-hover-color,
+  $hover-bg: $dropdown-link-hover-bg,
+  $font-size: $dropdown-font-size,
+  $font-weight: $font-weight-normal
+) {
+  position: relative;
+  width: 100%; // For `<button>`s
+  padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+  clear: both;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  color: $color;
+  text-align: inherit; // For `<button>`s
+  text-decoration: none;
+  background-color: transparent; // For `<button>`s
+  border: 0; // For `<button>`s
+  cursor: pointer;
+
+  &:not(&--flex) {
+    display: block;
+  }
+
+  @include text-truncate();
+  @content;
+
+  @include hover-focus {
+    color: $hover-color;
+    text-decoration: none;
+    background: $hover-bg;
+  }
+
+  &--active,
+  &:active {
+    color: $dropdown-link-active-color;
+    text-decoration: none;
+    background: $dropdown-link-active-bg;
+    @include hover-focus {
+      color: $dropdown-link-active-color;
+      text-decoration: none;
+      background-color: $dropdown-link-active-bg;
+    }
+  }
+
+  &--disabled,
+  &:disabled {
+    color: $dropdown-link-disabled-color;
+    background-color: transparent;
+    cursor: auto;
+    @include hover-focus {
+      color: $dropdown-link-disabled-color;
+      text-decoration: none;
+      background-color: transparent;
+    }
+  }
+}

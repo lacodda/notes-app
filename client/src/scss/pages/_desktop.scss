@@ -1,0 +1,26 @@
+.desktop {
+  height: 100vh;
+  &__control {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    > :not(:last-child) {
+      margin-right: 0.5rem;
+    }
+  }
+  &__restore {
+  }
+  &__board-wrapper {
+    height: 100%;
+    position: relative;
+    padding: 2rem;
+    background: $gray-200;
+    border-radius: $border-radius;
+  }
+  &__board {
+    height: 100%;
+    position: relative;
+    // background: $gray-200;
+    // padding: 1rem;
+  }
+}
