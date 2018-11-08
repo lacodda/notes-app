@@ -2,6 +2,7 @@
   <div class="login__container">
     <h1>Login</h1>
     <button class="btn btn--orange" @click="onLogin">Login</button>
+    <button class="btn btn--orange" @click="onRegister">Register</button>
   </div>
 </template>
 
@@ -11,20 +12,26 @@ import { mapActions, mapGetters } from 'vuex';
 export default {
   name: 'Login',
 
-  props: {
-    data: String,
+  props: {},
+
+  data() {
+    return {
+      data: {
+        email: 'jonsnow2@gmail.com',
+        password: '123456',
+      },
+    };
   },
+
   methods: {
-    ...mapActions('auth', ['login']),
+    ...mapActions('auth', ['login', 'register']),
+
+    onRegister() {
+      this.register(this.data);
+    },
 
     onLogin() {
-      const data = {
-        email: 'jonsnow@gmail.com',
-        password: '123456',
-      };
-
-      console.log('data', data);
-      this.login(data);
+      this.login(this.data);
     },
   },
 };
