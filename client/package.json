@@ -21,7 +21,6 @@
     "vuex"
   ],
   "scripts": {
-    "postinstall": "if test \"$NODE_ENV\" = \"production\" ; then npm run build ; fi ",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
@@ -34,11 +33,13 @@
   },
   "dependencies": {
     "express": "^4.16.4",
-    "lodash": "^4.17.11",
     "serve-static": "^1.13.2",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "axios": "^0.18.0",
+    "date-fns": "^1.29.0",
+    "lodash-es": "^4.17.11"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.5",
