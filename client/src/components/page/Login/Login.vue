@@ -1,11 +1,13 @@
 <template>
   <div class="login__container">
     <h1>Login</h1>
-    <button class="btn btn--orange" @click="login">Login</button>
+    <button class="btn btn--orange" @click="onLogin">Login</button>
   </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
+
 export default {
   name: 'Login',
 
@@ -13,13 +15,16 @@ export default {
     data: String,
   },
   methods: {
-    login() {
+    ...mapActions('auth', ['login']),
+
+    onLogin() {
       const data = {
         email: 'jonsnow@gmail.com',
         password: '123456',
       };
 
       console.log('data', data);
+      this.login(data);
     },
   },
 };
